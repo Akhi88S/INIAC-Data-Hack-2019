@@ -217,8 +217,7 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-const host = '0.0.0.0';
-const port = process.env.PORT || 3000;
-app.listen(port, host, function() {
-  console.log("Server started.......");
+var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3000");
 });
