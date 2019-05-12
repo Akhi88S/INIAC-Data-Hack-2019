@@ -221,14 +221,14 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-var port = process.env.port || 3000;
+// var port = process.env.port || 3000;
 
-app.listen(port);
+// app.listen(port);
 //app.listen("8000", function(){
 //	console.log("Blog running on server 3000");
 //});
-//var app_port = process.env.YOUR_PORT || process.env.PORT || 80||3000;
-//var app_host = process.env.YOUR_HOST || '0.0.0.0';
-//app.listen(app_port, app_host, function() {
-  //  console.log('Listening on port %d', app_port);
-//});
+var app_port = process.env.YOUR_PORT || process.env.PORT || 80||3000;
+var app_host = process.env.YOUR_HOST || '0.0.0.0';
+app.listen(app_port, app_host, function() {
+  console.log('Listening on port %d', app_port);
+});
