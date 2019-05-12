@@ -15,7 +15,7 @@ var express 	= require('express'),
 //APP CONFIG
 //mongoose.connect("mongodb://localhost/restful_blog_app");
 //MongoClient mongoClient = MongoClients.create("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true");
- mongoose.connect("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true");
+ mongoose.connect("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true",{ useNewUrlParser: true });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
