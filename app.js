@@ -13,7 +13,9 @@ var express 	= require('express'),
 
 
 //APP CONFIG
-mongoose.connect("mongodb://localhost/restful_blog_app");
+mongoose.connect("process.env.DATABASEURL");
+//MongoClient mongoClient = MongoClients.create("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true");
+// mongoose.connect("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -74,6 +76,7 @@ app.get("/", function(req, res){
 //show sign up form
 app.get("/register", function(req, res){
    res.render("register");
+	 console.log("done");
 });
 //handling user sign up
 app.post("/register", function(req, res){
@@ -92,6 +95,7 @@ app.post("/register", function(req, res){
 //render login form
 app.get("/login", function(req, res){
    res.render("home");
+	 console.log("done");
 });
 //login logic
 //middleware
@@ -217,5 +221,9 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-//var port = process.env.PORT || 3000;
-app.listen(process.env.PORT, process.env.IP);
+var port = process.env.port || 3000;
+
+app.listen(port);
+//app.listen("8000", function(){
+//	console.log("Blog running on server 3000");
+//});
