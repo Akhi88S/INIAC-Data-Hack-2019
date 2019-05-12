@@ -227,7 +227,7 @@ function isLoggedIn(req, res, next){
 //app.listen("8000", function(){
 //	console.log("Blog running on server 3000");
 //});
-var app_port = process.env.YOUR_PORT || process.env.PORT || 80;
+var app_port = process.env.YOUR_PORT || process.env.PORT || 80||3000;
 var app_host = process.env.YOUR_HOST || '0.0.0.0';
 app.listen(app_port, app_host, function() {
     console.log('Listening on port %d', app_port);
