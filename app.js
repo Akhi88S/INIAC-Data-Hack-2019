@@ -217,7 +217,11 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-var port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", function() {
-console.log("Listening on Port 3000");
+const argv = require('yargs').argv;
+const app = require('express')();
+
+const port = argv.port || 8081;
+
+app.listen(argv.port, ()=>{
+    console.log('Probably listening to heroku $PORT now ', argv.port); // unless $PORT is undefined, in which case you're listening to 8081.
 });
