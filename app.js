@@ -13,9 +13,9 @@ var express 	= require('express'),
 
 
 //APP CONFIG
-//mongoose.connect("mongodb://localhost/restful_blog_app");
+mongoose.connect("mongodb://localhost/restful_blog_app");       //for local host
 //MongoClient mongoClient = MongoClients.create("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true");
- mongoose.connect("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true",{ useNewUrlParser: true });
+ mongoose.connect("mongodb+srv://akhil:1234@cluster0-6irpd.mongodb.net/test?retryWrites=true",{ useNewUrlParser: true });    // for heroku
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -60,7 +60,7 @@ app.use((req, res, next) => {
 
 app.get("/", function(req, res){
 	res.render("home");
-})
+});
 
 
 
@@ -221,14 +221,17 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-// var port = process.env.port || 3000;
+// for localhost ports
+ var port = process.env.port || 3000;
+app.listen(port);
+                                                                //app.listen("8000", function(){
+console.log("Blog running on server 3000");
+                                                                               //});
 
-// app.listen(port);
-//app.listen("8000", function(){
-//	console.log("Blog running on server 3000");
-//});
+/*  for heroku ports
 var app_port = process.env.YOUR_PORT || process.env.PORT || 80||3000;
 var app_host = process.env.YOUR_HOST || '0.0.0.0';
 app.listen(app_port, app_host, function() {
   console.log('Listening on port %d', app_port);
 });
+*/
