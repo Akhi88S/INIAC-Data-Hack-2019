@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 
 
 
-app.get("/", function(req, res){
+app.get("/",isLoggedIn,function(req, res){
 	res.render("home");
 });
 
@@ -74,7 +74,7 @@ app.get("/", function(req, res){
 // Auth Routes
 
 //show sign up form
-app.get("/register", function(req, res){
+app.get("/register",function(req, res){
    res.render("register");
 	 console.log("done");
 });
@@ -105,13 +105,13 @@ app.post("/login", passport.authenticate("local", {
 }) ,function(req, res){
 });
 
-app.get("/logout", function(req, res){
+app.get("/logout",isLoggedIn, function(req, res){
     req.logout();
     res.redirect("/");
 	});
 
 
-	app.get("/User/:id/blogs", function(req, res){
+	app.get("/User/:id/blogs",isLoggedIn, function(req, res){
 		Blog.find({}, function(err, blogs){
 			if(err){
 				console.log(err);
@@ -125,7 +125,7 @@ app.get("/logout", function(req, res){
 
 	//INDEX ROUTE  //    ).populate('user').exec
 	//INDEX ROUTE
-	app.get("/blogs", function(req, res){
+	app.get("/blogs",isLoggedIn,function(req, res){
 		Blog.find({}, function(err, blogs){
 			if(err){
 				console.log(err);
@@ -220,6 +220,13 @@ function isLoggedIn(req, res, next){
     }
     res.redirect("/login");
 }
+
+
+app.get("*",function(req, res){
+	res.render("home");
+});
+
+
 
 // for localhost ports
 /*
